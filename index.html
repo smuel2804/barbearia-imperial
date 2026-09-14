@@ -1,1169 +1,1579 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Barbearia Imperial | Estilo & Tradição</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-
-  <style>
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: "Inter", sans-serif;
-      background: #080808;
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    :root {
-      --gold: #d9a441;
-      --gold-light: #ffd67a;
-      --dark: #080808;
-      --dark-light: #111;
-      --text-gray: #aaa;
-    }
-
-    /* ================= NAVBAR ================= */
-
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(8,8,8,.78);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-
-    nav {
-      max-width: 1200px;
-      margin: auto;
-      height: 80px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      padding: 0 25px;
-    }
-
-    .logo {
-      font-family: "Playfair Display", serif;
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--gold);
-    }
-
-    .logo span {
-      color: white;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 35px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: #ddd;
-      text-decoration: none;
-      font-size: 14px;
-      position: relative;
-      transition: .3s;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      bottom: -7px;
-      left: 0;
-
-      width: 0;
-      height: 2px;
-
-      background: var(--gold);
-
-      transition: .3s;
-    }
-
-    .nav-links a:hover {
-      color: white;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    /* ================= BUTTON ================= */
-
-    .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-
-      padding: 15px 28px;
-
-      border-radius: 999px;
-      border: none;
-
-      text-decoration: none;
-
-      font-weight: 700;
-      cursor: pointer;
-
-      transition:
-        transform .3s,
-        box-shadow .3s,
-        background .3s;
-    }
-
-    .btn-gold {
-      color: #090909;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--gold-light),
-          var(--gold)
-        );
-
-      box-shadow:
-        0 8px 35px rgba(217,164,65,.2);
-    }
-
-    .btn-gold:hover {
-      transform: translateY(-4px) scale(1.03);
-
-      box-shadow:
-        0 15px 45px rgba(217,164,65,.42);
-    }
-
-    .btn-outline {
-      color: white;
-      border: 1px solid rgba(255,255,255,.2);
-      margin-left: 10px;
-    }
-
-    .btn-outline:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-      transform: translateY(-4px);
-    }
-
-    /* ================= HERO ================= */
-
-    .hero {
-      min-height: 100vh;
-
-      display: flex;
-      align-items: center;
-
-      position: relative;
-
-      background:
-
-        linear-gradient(
-          90deg,
-          rgba(0,0,0,.97) 0%,
-          rgba(0,0,0,.84) 45%,
-          rgba(0,0,0,.2) 100%
-        ),
-
-        url(
-          "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1800&q=85"
-        );
-
-      background-position: center;
-      background-size: cover;
-    }
-
-    .hero::before {
-      content: "";
-
-      position: absolute;
-      inset: 0;
-
-      background:
-        radial-gradient(
-          circle at 30% 50%,
-          rgba(217,164,65,.15),
-          transparent 45%
-        );
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 5;
-
-      max-width: 1200px;
-      width: 100%;
-
-      padding: 150px 25px 80px;
-      margin: auto;
-    }
-
-    .badge {
-      display: inline-block;
-
-      padding: 8px 15px;
-
-      border: 1px solid rgba(217,164,65,.4);
-      border-radius: 999px;
-
-      background: rgba(217,164,65,.08);
-
-      color: var(--gold-light);
-
-      font-size: 12px;
-      letter-spacing: 2px;
-
-      margin-bottom: 25px;
-
-      animation: fadeUp .8s ease;
-    }
-
-    .hero h1 {
-      max-width: 720px;
-
-      font-family: "Playfair Display", serif;
-
-      font-size: clamp(55px, 8vw, 105px);
-
-      line-height: .93;
-
-      letter-spacing: -3px;
-
-      animation: fadeUp 1s ease;
-    }
-
-    .hero h1 span {
-      color: var(--gold);
-    }
-
-    .hero p {
-      max-width: 610px;
-
-      margin: 30px 0;
-
-      font-size: 18px;
-      line-height: 1.7;
-
-      color: #bbb;
-
-      animation: fadeUp 1.2s ease;
-    }
-
-    .hero-buttons {
-      animation: fadeUp 1.4s ease;
-    }
-
-    /* ================= ANIMATION ================= */
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* ================= SECTIONS ================= */
-
-    section {
-      padding: 110px 25px;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .section-tag {
-      text-transform: uppercase;
-
-      letter-spacing: 3px;
-
-      color: var(--gold);
-
-      font-size: 12px;
-      font-weight: bold;
-
-      margin-bottom: 15px;
-    }
-
-    .section-title {
-      font-family: "Playfair Display", serif;
-
-      font-size: clamp(38px, 5vw, 58px);
-
-      margin-bottom: 18px;
-    }
-
-    .section-description {
-      color: var(--text-gray);
-
-      max-width: 600px;
-
-      line-height: 1.7;
-
-      margin-bottom: 50px;
-    }
-
-    /* ================= SERVICES ================= */
-
-    .services {
-      background: #0c0c0c;
-    }
-
-    .services-grid {
-      display: grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      gap: 22px;
-    }
-
-    .service-card {
-      position: relative;
-
-      background:
-        linear-gradient(
-          145deg,
-          #151515,
-          #0d0d0d
-        );
-
-      border: 1px solid rgba(255,255,255,.06);
-
-      border-radius: 24px;
-
-      padding: 35px;
-
-      overflow: hidden;
-
-      transition: .4s;
-    }
-
-    .service-card::before {
-      content: "";
-
-      position: absolute;
-
-      width: 180px;
-      height: 180px;
-
-      background: var(--gold);
-
-      filter: blur(100px);
-
-      opacity: 0;
-
-      right: -70px;
-      top: -70px;
-
-      transition: .5s;
-    }
-
-    .service-card:hover {
-      transform: translateY(-10px);
-
-      border-color:
-        rgba(217,164,65,.45);
-    }
-
-    .service-card:hover::before {
-      opacity: .18;
-    }
-
-    .service-icon {
-      font-size: 38px;
-      margin-bottom: 25px;
-    }
-
-    .service-card h3 {
-      font-size: 22px;
-      margin-bottom: 12px;
-    }
-
-    .service-card p {
-      color: #999;
-      line-height: 1.6;
-    }
-
-    .price {
-      display: block;
-
-      margin-top: 25px;
-
-      font-size: 22px;
-      color: var(--gold-light);
-      font-weight: bold;
-    }
-
-    /* ================= STATS ================= */
-
-    .stats {
-      display: grid;
-
-      grid-template-columns:
-        repeat(4,1fr);
-
-      border-top:
-        1px solid rgba(255,255,255,.08);
-
-      border-bottom:
-        1px solid rgba(255,255,255,.08);
-
-      padding: 50px 0;
-    }
-
-    .stat {
-      text-align: center;
-    }
-
-    .stat-number {
-      font-family: "Playfair Display", serif;
-
-      font-size: 48px;
-
-      color: var(--gold);
-    }
-
-    .stat p {
-      color: #888;
-      margin-top: 5px;
-    }
-
-    /* ================= EXPERIENCE ================= */
-
-    .experience {
-      display: grid;
-
-      grid-template-columns: 1fr 1fr;
-
-      gap: 70px;
-
-      align-items: center;
-    }
-
-    .experience-image {
-      height: 600px;
-
-      border-radius: 30px;
-
-      background:
-
-        linear-gradient(
-          rgba(0,0,0,.1),
-          rgba(0,0,0,.2)
-        ),
-
-        url(
-          "https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1000&q=80"
-        );
-
-      background-size: cover;
-      background-position: center;
-
-      position: relative;
-    }
-
-    .experience-box {
-      position: absolute;
-
-      bottom: 25px;
-      right: -35px;
-
-      background: var(--gold);
-
-      color: #090909;
-
-      padding: 28px;
-
-      border-radius: 20px;
-
-      font-weight: 700;
-
-      box-shadow:
-        0 15px 50px rgba(0,0,0,.45);
-    }
-
-    .experience-text p {
-      color: #aaa;
-      line-height: 1.8;
-      margin: 20px 0 30px;
-    }
-
-    /* ================= CTA ================= */
-
-    .cta {
-      margin: 60px auto;
-
-      max-width: 1150px;
-
-      border-radius: 35px;
-
-      padding: 80px 40px;
-
-      text-align: center;
-
-      background:
-        radial-gradient(
-          circle at top,
-          rgba(217,164,65,.22),
-          transparent 50%
-        ),
-        #111;
-
-      border:
-        1px solid rgba(217,164,65,.2);
-    }
-
-    .cta h2 {
-      font-family: "Playfair Display", serif;
-
-      font-size: clamp(40px, 6vw, 70px);
-
-      margin-bottom: 20px;
-    }
-
-    .cta p {
-      color: #aaa;
-      margin-bottom: 35px;
-    }
-
-    /* ================= WHATSAPP ================= */
-
-    .whatsapp {
-      position: fixed;
-
-      right: 25px;
-      bottom: 25px;
-
-      width: 60px;
-      height: 60px;
-
-      border-radius: 50%;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      background: #25d366;
-
-      color: white;
-
-      text-decoration: none;
-
-      font-size: 26px;
-
-      z-index: 999;
-
-      box-shadow:
-        0 10px 30px rgba(37,211,102,.3);
-
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-
-      0% {
-        box-shadow:
-          0 0 0 0 rgba(37,211,102,.45);
-      }
-
-      70% {
-        box-shadow:
-          0 0 0 18px rgba(37,211,102,0);
-      }
-
-      100% {
-        box-shadow:
-          0 0 0 0 rgba(37,211,102,0);
-      }
-    }
-
-    /* ================= REVEAL ================= */
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-
-      transition: 1s;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ================= FOOTER ================= */
-
-    footer {
-      text-align: center;
-
-      color: #666;
-
-      padding: 40px 20px;
-
-      border-top:
-        1px solid rgba(255,255,255,.06);
-    }
-
-    /* ================= MOBILE ================= */
-
-    @media(max-width:900px) {
-
-      .nav-links {
-        display: none;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .stats {
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-      }
-
-      .experience {
-        grid-template-columns: 1fr;
-      }
-
-      .experience-box {
-        right: 20px;
-      }
-
-    }
-
-    @media(max-width:600px) {
-
-      .hero h1 {
-        font-size: 55px;
-      }
-
-      .hero {
-        background-position: 65%;
-      }
-
-      .btn {
-        width: 100%;
-        margin-bottom: 10px;
-      }
-
-      .btn-outline {
-        margin-left: 0;
-      }
-
-      .stats {
-        grid-template-columns: 1fr;
-      }
-
-    }
-
-  </style>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Projeto demonstrativo de landing page premium para barbearia."
+    >
+
+    <meta
+        name="theme-color"
+        content="#0a0a0a"
+    >
+
+    <title>
+        Barbearia Imperial | Estilo & Tradição
+    </title>
+
+    <!-- Google Fonts -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 </head>
+
 
 <body>
 
-<header>
+    <!-- Luz que acompanha o mouse -->
+    <div
+        class="cursor-glow"
+        aria-hidden="true"
+    ></div>
 
-  <nav>
 
-    <div class="logo">
-      IMPERIAL<span>.</span>
-    </div>
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
-    <ul class="nav-links">
+    <header class="header" id="topo">
 
-      <li>
-        <a href="#inicio">
-          Início
-        </a>
-      </li>
+        <nav class="navbar container">
 
-      <li>
-        <a href="#servicos">
-          Serviços
-        </a>
-      </li>
+            <a
+                href="#inicio"
+                class="logo"
+                aria-label="Barbearia Imperial - início"
+            >
+                IMPERIAL<span>.</span>
+            </a>
 
-      <li>
-        <a href="#sobre">
-          Sobre
-        </a>
-      </li>
 
-      <li>
-        <a href="#contato">
-          Agendamento
-        </a>
-      </li>
+            <!-- Menu mobile -->
+            <button
+                class="menu-toggle"
+                aria-label="Abrir menu"
+                aria-expanded="false"
+            >
+                <span></span>
+                <span></span>
+            </button>
 
-    </ul>
+
+            <div class="nav-panel">
+
+                <ul class="nav-links">
+
+                    <li>
+                        <a href="#inicio">
+                            Início
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#servicos">
+                            Serviços
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#galeria">
+                            Galeria
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#avaliacoes">
+                            Avaliações
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#faq">
+                            FAQ
+                        </a>
+                    </li>
+
+                </ul>
+
+
+                <a
+                    href="#agendamento"
+                    class="btn btn-gold nav-cta"
+                >
+                    Agendar horário
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+
+    <main>
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section
+            class="hero"
+            id="inicio"
+        >
+
+            <div class="hero-overlay"></div>
+
+
+            <div class="container hero-content">
+
+                <div class="eyebrow reveal">
+                    BARBEARIA PREMIUM • PROJETO DEMONSTRATIVO
+                </div>
+
+
+                <h1 class="reveal">
+
+                    Seu estilo.
+
+                    <br>
+
+                    Nossa
+
+                    <span>
+                        assinatura.
+                    </span>
+
+                </h1>
+
+
+                <p class="hero-copy reveal">
+
+                    Corte, barba e cuidado em uma experiência
+                    criada para quem valoriza presença,
+                    identidade e acabamento impecável.
+
+                </p>
+
+
+                <div class="hero-actions reveal">
+
+                    <a
+                        href="#agendamento"
+                        class="btn btn-gold magnetic"
+                    >
+                        Quero agendar
+                        <span>→</span>
+                    </a>
+
+
+                    <a
+                        href="#servicos"
+                        class="btn btn-outline"
+                    >
+                        Ver serviços
+                    </a>
+
+                </div>
+
+
+                <div class="hero-proof reveal">
+
+                    <div class="avatars">
+
+                        <span>JP</span>
+                        <span>RM</span>
+                        <span>LC</span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Experiência premium
+                        </strong>
+
+                        <small>
+                            Atendimento personalizado do início ao fim.
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <a
+                class="scroll-indicator"
+                href="#servicos"
+                aria-label="Rolar para serviços"
+            >
+                <span></span>
+            </a>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SERVIÇOS
+        ================================================== -->
+
+        <section
+            class="section services"
+            id="servicos"
+        >
+
+            <div class="container">
+
+
+                <div class="section-heading reveal">
+
+                    <div class="section-tag">
+                        NOSSOS SERVIÇOS
+                    </div>
+
+
+                    <h2>
+                        Estilo em cada detalhe.
+                    </h2>
+
+
+                    <p>
+
+                        Uma seleção de serviços pensada
+                        para valorizar seu visual com técnica,
+                        conforto e atendimento personalizado.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="services-grid">
+
+
+                    <!-- Corte -->
+
+                    <article
+                        class="service-card spotlight-card reveal"
+                    >
+
+                        <div class="service-top">
+
+                            <span class="service-number">
+                                01
+                            </span>
+
+                            <span class="service-icon">
+                                ✂️
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Corte Premium
+                        </h3>
+
+
+                        <p>
+
+                            Corte personalizado de acordo
+                            com seu estilo, rotina e
+                            formato de rosto.
+
+                        </p>
+
+
+                        <div class="service-footer">
+
+                            <strong>
+                                R$ 45
+                            </strong>
+
+                            <a href="#agendamento">
+                                Agendar →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- Barba -->
+
+                    <article
+                        class="service-card spotlight-card reveal"
+                    >
+
+                        <div class="service-top">
+
+                            <span class="service-number">
+                                02
+                            </span>
+
+                            <span class="service-icon">
+                                🧔
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Barba Completa
+                        </h3>
+
+
+                        <p>
+
+                            Modelagem, toalha quente,
+                            acabamento e hidratação para
+                            um resultado preciso.
+
+                        </p>
+
+
+                        <div class="service-footer">
+
+                            <strong>
+                                R$ 35
+                            </strong>
+
+                            <a href="#agendamento">
+                                Agendar →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- Experience -->
+
+                    <article
+                        class="service-card spotlight-card featured reveal"
+                    >
+
+                        <div class="popular-badge">
+                            MAIS PEDIDO
+                        </div>
+
+
+                        <div class="service-top">
+
+                            <span class="service-number">
+                                03
+                            </span>
+
+                            <span class="service-icon">
+                                👑
+                            </span>
+
+                        </div>
+
+
+                        <h3>
+                            Imperial Experience
+                        </h3>
+
+
+                        <p>
+
+                            Corte, barba, hidratação e
+                            finalização completa em uma
+                            experiência exclusiva.
+
+                        </p>
+
+
+                        <div class="service-footer">
+
+                            <strong>
+                                R$ 75
+                            </strong>
+
+                            <a href="#agendamento">
+                                Agendar →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             NÚMEROS
+        ================================================== -->
+
+        <section class="section stats-section">
+
+            <div class="container stats reveal">
+
+
+                <div class="stat">
+
+                    <strong
+                        class="counter"
+                        data-target="8"
+                    >
+                        0
+                    </strong>
+
+                    <span>
+                        anos de conceito
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong
+                        class="counter"
+                        data-target="4"
+                    >
+                        0
+                    </strong>
+
+                    <span>
+                        especialistas
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong
+                        class="counter"
+                        data-target="6"
+                    >
+                        0
+                    </strong>
+
+                    <span>
+                        serviços principais
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong
+                        class="counter"
+                        data-target="1"
+                    >
+                        0
+                    </strong>
+
+                    <span>
+                        experiência memorável
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SOBRE
+        ================================================== -->
+
+        <section class="section story">
+
+            <div class="container story-grid">
+
+
+                <div class="story-media reveal">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1200&q=85"
+                        alt="Barbeiro realizando acabamento em cliente"
+                        loading="lazy"
+                    >
+
+
+                    <div class="floating-card">
+
+                        <span>
+                            Desde 2018
+                        </span>
+
+                        <strong>
+                            criando presença.
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="story-copy reveal">
+
+                    <div class="section-tag">
+                        A EXPERIÊNCIA IMPERIAL
+                    </div>
+
+
+                    <h2>
+                        Não é só cabelo.
+                        É identidade.
+                    </h2>
+
+
+                    <p>
+
+                        Cada atendimento começa com uma
+                        conversa e termina com um resultado
+                        pensado para você.
+
+                        Ambiente sofisticado, técnica apurada
+                        e atenção aos detalhes.
+
+                    </p>
+
+
+                    <ul class="check-list">
+
+                        <li>
+                            <span>✓</span>
+                            Atendimento personalizado
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Ambiente confortável e moderno
+                        </li>
+
+                        <li>
+                            <span>✓</span>
+                            Produtos profissionais
+                        </li>
+
+                    </ul>
+
+
+                    <a
+                        href="#agendamento"
+                        class="btn btn-gold magnetic"
+                    >
+                        Reservar meu horário
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ANTES E DEPOIS
+        ================================================== -->
+
+        <section class="section before-after-section">
+
+            <div class="container">
+
+
+                <div class="section-heading center reveal">
+
+                    <div class="section-tag">
+                        ANTES & DEPOIS
+                    </div>
+
+
+                    <h2>
+                        Resultado que fala por si.
+                    </h2>
+
+
+                    <p>
+                        Arraste o controle e compare a transformação.
+                    </p>
+
+                </div>
+
+
+
+                <div
+                    class="before-after reveal"
+                    data-before-after
+                >
+
+
+                    <!-- Depois -->
+
+                    <img
+                        class="before-after-base"
+                        src="https://images.unsplash.com/photo-1622287162716-f311baa1a2b8?auto=format&fit=crop&w=1400&q=85"
+                        alt="Resultado de corte"
+                        loading="lazy"
+                    >
+
+
+                    <!-- Antes -->
+
+                    <div class="before-after-overlay">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1400&q=85"
+                            alt="Visual antes do corte"
+                            loading="lazy"
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="before-after-label label-before"
+                    >
+                        ANTES
+                    </div>
+
+
+                    <div
+                        class="before-after-label label-after"
+                    >
+                        DEPOIS
+                    </div>
+
+
+                    <div
+                        class="before-after-handle"
+                        aria-hidden="true"
+                    >
+                        <span>↔</span>
+                    </div>
+
+
+                    <input
+                        class="before-after-range"
+                        type="range"
+                        min="0"
+                        max="100"
+                        value="50"
+                        aria-label="Comparar antes e depois"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             GALERIA
+        ================================================== -->
+
+        <section
+            class="section gallery-section"
+            id="galeria"
+        >
+
+            <div class="container">
+
+
+                <div class="section-heading reveal">
+
+                    <div class="section-tag">
+                        GALERIA
+                    </div>
+
+
+                    <h2>
+                        Detalhes que fazem diferença.
+                    </h2>
+
+
+                    <p>
+                        Clique nas imagens para ampliar.
+                    </p>
+
+                </div>
+
+
+
+                <div class="gallery-grid">
+
+
+                    <button
+                        class="gallery-item large reveal"
+                        data-image="https://images.unsplash.com/photo-1512690459411-b9245aed614b?auto=format&fit=crop&w=1600&q=90"
+                    >
+
+                        <img
+                            src="https://images.unsplash.com/photo-1512690459411-b9245aed614b?auto=format&fit=crop&w=900&q=85"
+                            alt="Interior de barbearia"
+                            loading="lazy"
+                        >
+
+                        <span>
+                            Ambiente
+                        </span>
+
+                    </button>
+
+
+
+                    <button
+                        class="gallery-item reveal"
+                        data-image="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1600&q=90"
+                    >
+
+                        <img
+                            src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=800&q=85"
+                            alt="Corte masculino"
+                            loading="lazy"
+                        >
+
+                        <span>
+                            Cortes
+                        </span>
+
+                    </button>
+
+
+
+                    <button
+                        class="gallery-item reveal"
+                        data-image="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1600&q=90"
+                    >
+
+                        <img
+                            src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=800&q=85"
+                            alt="Acabamento de barba"
+                            loading="lazy"
+                        >
+
+                        <span>
+                            Precisão
+                        </span>
+
+                    </button>
+
+
+
+                    <button
+                        class="gallery-item reveal"
+                        data-image="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1600&q=90"
+                    >
+
+                        <img
+                            src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=85"
+                            alt="Barbeiro em atendimento"
+                            loading="lazy"
+                        >
+
+                        <span>
+                            Experiência
+                        </span>
+
+                    </button>
+
+
+
+                    <button
+                        class="gallery-item wide reveal"
+                        data-image="https://images.unsplash.com/photo-1521490683712-35a1cb235d1c?auto=format&fit=crop&w=1600&q=90"
+                    >
+
+                        <img
+                            src="https://images.unsplash.com/photo-1521490683712-35a1cb235d1c?auto=format&fit=crop&w=1200&q=85"
+                            alt="Ferramentas de barbearia"
+                            loading="lazy"
+                        >
+
+                        <span>
+                            Detalhes
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             AVALIAÇÕES
+        ================================================== -->
+
+        <section
+            class="section testimonials"
+            id="avaliacoes"
+        >
+
+            <div class="container">
+
+
+                <div class="section-heading center reveal">
+
+                    <div class="section-tag">
+                        AVALIAÇÕES
+                    </div>
+
+
+                    <h2>
+                        O que nossos clientes dizem.
+                    </h2>
+
+
+                    <p>
+                        Depoimentos demonstrativos para
+                        composição deste projeto de portfólio.
+                    </p>
+
+                </div>
+
+
+
+                <div class="testimonial-track reveal">
+
+
+                    <article class="testimonial-card active">
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+
+                        <blockquote>
+
+                            “Ambiente excelente,
+                            atendimento muito cuidadoso
+                            e um acabamento impecável.”
+
+                        </blockquote>
+
+
+                        <div class="testimonial-author">
+
+                            <span>
+                                RM
+                            </span>
+
+
+                            <div>
+
+                                <strong>
+                                    Rafael M.
+                                </strong>
+
+                                <small>
+                                    Cliente demonstrativo
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="testimonial-card">
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+
+                        <blockquote>
+
+                            “O site transmite exatamente
+                            a sensação de uma barbearia
+                            premium. Ficou muito profissional.”
+
+                        </blockquote>
+
+
+                        <div class="testimonial-author">
+
+                            <span>
+                                CS
+                            </span>
+
+
+                            <div>
+
+                                <strong>
+                                    Caio S.
+                                </strong>
+
+                                <small>
+                                    Cliente demonstrativo
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="testimonial-card">
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+
+                        <blockquote>
+
+                            “Agendamento simples,
+                            informações claras e visual
+                            excelente no celular.”
+
+                        </blockquote>
+
+
+                        <div class="testimonial-author">
+
+                            <span>
+                                LF
+                            </span>
+
+
+                            <div>
+
+                                <strong>
+                                    Lucas F.
+                                </strong>
+
+                                <small>
+                                    Cliente demonstrativo
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+
+                <div class="testimonial-controls reveal">
+
+                    <button
+                        class="testimonial-prev"
+                        aria-label="Depoimento anterior"
+                    >
+                        ←
+                    </button>
+
+
+                    <div class="testimonial-dots"></div>
+
+
+                    <button
+                        class="testimonial-next"
+                        aria-label="Próximo depoimento"
+                    >
+                        →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FAQ
+        ================================================== -->
+
+        <section
+            class="section faq-section"
+            id="faq"
+        >
+
+            <div class="container faq-grid">
+
+
+                <div class="faq-copy reveal">
+
+                    <div class="section-tag">
+                        DÚVIDAS FREQUENTES
+                    </div>
+
+
+                    <h2>
+                        Antes de agendar.
+                    </h2>
+
+
+                    <p>
+                        Informações rápidas para facilitar
+                        sua experiência.
+                    </p>
+
+                </div>
+
+
+
+                <div class="faq-list reveal">
+
+
+                    <article class="faq-item">
+
+                        <button class="faq-question">
+
+                            Preciso agendar com antecedência?
+
+                            <span>+</span>
+
+                        </button>
+
+
+                        <div class="faq-answer">
+
+                            <p>
+
+                                O agendamento é recomendado
+                                para garantir o horário e
+                                profissional desejados.
+
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="faq-item">
+
+                        <button class="faq-question">
+
+                            Vocês atendem sem horário marcado?
+
+                            <span>+</span>
+
+                        </button>
+
+
+                        <div class="faq-answer">
+
+                            <p>
+
+                                Sim, conforme disponibilidade.
+                                Horários agendados têm prioridade.
+
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="faq-item">
+
+                        <button class="faq-question">
+
+                            Posso escolher o barbeiro?
+
+                            <span>+</span>
+
+                        </button>
+
+
+                        <div class="faq-answer">
+
+                            <p>
+
+                                Sim. Basta informar sua preferência
+                                no momento do agendamento.
+
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="faq-item">
+
+                        <button class="faq-question">
+
+                            Quais formas de pagamento são aceitas?
+
+                            <span>+</span>
+
+                        </button>
+
+
+                        <div class="faq-answer">
+
+                            <p>
+
+                                Este projeto demonstrativo
+                                considera Pix, dinheiro e cartões
+                                como opções de exemplo.
+
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             AGENDAMENTO
+        ================================================== -->
+
+        <section
+            class="section booking-section"
+            id="agendamento"
+        >
+
+            <div class="container booking-card reveal">
+
+
+                <div class="booking-copy">
+
+                    <div class="section-tag">
+                        AGENDAMENTO
+                    </div>
+
+
+                    <h2>
+                        Seu próximo corte começa aqui.
+                    </h2>
+
+
+                    <p>
+
+                        Preencha os dados e o botão irá
+                        montar uma mensagem pronta para
+                        enviar no WhatsApp.
+
+                    </p>
+
+
+                    <div class="booking-info">
+
+
+                        <div>
+
+                            <span>
+                                Horário
+                            </span>
+
+                            <strong>
+                                Seg–Sáb • 09h às 20h
+                            </strong>
+
+                        </div>
+
+
+                        <div>
+
+                            <span>
+                                Localização
+                            </span>
+
+                            <strong>
+                                São Paulo • SP
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <form
+                    class="booking-form"
+                    id="booking-form"
+                >
+
+
+                    <label>
+
+                        Seu nome
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Ex.: João"
+                            required
+                        >
+
+                    </label>
+
+
+
+                    <label>
+
+                        Serviço
+
+                        <select
+                            id="service"
+                            required
+                        >
+
+                            <option value="">
+                                Selecione
+                            </option>
+
+                            <option>
+                                Corte Premium
+                            </option>
+
+                            <option>
+                                Barba Completa
+                            </option>
+
+                            <option>
+                                Imperial Experience
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+
+                    <div class="form-row">
+
+
+                        <label>
+
+                            Data
+
+                            <input
+                                type="date"
+                                id="date"
+                                required
+                            >
+
+                        </label>
+
+
+                        <label>
+
+                            Horário
+
+                            <input
+                                type="time"
+                                id="time"
+                                required
+                            >
+
+                        </label>
+
+
+                    </div>
+
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-gold magnetic"
+                    >
+
+                        Agendar pelo WhatsApp
+
+                        <span>
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <small>
+
+                        Número demonstrativo.
+                        Troque o telefone em
+                        <code>script.js</code>.
+
+                    </small>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             LOCALIZAÇÃO
+        ================================================== -->
+
+        <section class="location-section">
+
+            <div class="container location-card reveal">
+
+
+                <div>
+
+                    <div class="section-tag">
+                        LOCALIZAÇÃO
+                    </div>
+
+
+                    <h2>
+                        Fácil de chegar.
+                        Difícil de esquecer.
+                    </h2>
+
+
+                    <p>
+                        Rua Exemplo, 100 — São Paulo, SP
+                    </p>
+
+
+                    <a
+                        href="https://www.google.com/maps"
+                        target="_blank"
+                        rel="noopener"
+                        class="btn btn-outline"
+                    >
+                        Abrir no mapa
+                    </a>
+
+                </div>
+
+
+
+                <div
+                    class="map-visual"
+                    aria-label="Mapa ilustrativo"
+                >
+
+                    <div class="map-grid"></div>
+
+                    <div class="map-pin">
+                        ●
+                    </div>
+
+                    <span>
+                        IMPERIAL
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-grid">
+
+
+            <div>
+
+                <a
+                    href="#inicio"
+                    class="logo"
+                >
+                    IMPERIAL<span>.</span>
+                </a>
+
+
+                <p>
+
+                    Projeto demonstrativo criado
+                    para portfólio de
+                    desenvolvimento web.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="footer-links">
+
+                <a href="#servicos">
+                    Serviços
+                </a>
+
+                <a href="#galeria">
+                    Galeria
+                </a>
+
+                <a href="#avaliacoes">
+                    Avaliações
+                </a>
+
+                <a href="#faq">
+                    FAQ
+                </a>
+
+            </div>
+
+
+
+            <div class="footer-social">
+
+                <a
+                    href="#"
+                    aria-label="Instagram"
+                >
+                    IG
+                </a>
+
+                <a
+                    href="#"
+                    aria-label="Facebook"
+                >
+                    FB
+                </a>
+
+                <a
+                    href="#"
+                    aria-label="WhatsApp"
+                >
+                    WA
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="container footer-bottom">
+
+            <span>
+                © 2026 Barbearia Imperial.
+            </span>
+
+            <span>
+                Projeto fictício para demonstração.
+            </span>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         WHATSAPP FLUTUANTE
+    ====================================================== -->
 
     <a
-      href="#contato"
-      class="btn btn-gold"
+        class="whatsapp-float"
+        href="https://wa.me/5511999999999"
+        target="_blank"
+        rel="noopener"
+        aria-label="Falar pelo WhatsApp"
     >
-      Agendar horário
+        WA
     </a>
 
-  </nav>
 
-</header>
 
+    <!-- =====================================================
+         LIGHTBOX
+    ====================================================== -->
 
-<main>
-
-<section
-  class="hero"
-  id="inicio"
->
-
-  <div class="hero-content">
-
-    <div class="badge">
-      BARBEARIA PREMIUM
-    </div>
-
-    <h1>
-      Seu estilo.<br>
-      Nossa <span>assinatura.</span>
-    </h1>
-
-    <p>
-      Mais que um corte, uma experiência.
-      Tradição, técnica e estilo em um ambiente
-      criado para quem valoriza cada detalhe.
-    </p>
-
-    <div class="hero-buttons">
-
-      <a
-        href="#contato"
-        class="btn btn-gold"
-      >
-        Quero agendar →
-      </a>
-
-      <a
-        href="#servicos"
-        class="btn btn-outline"
-      >
-        Ver serviços
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section
-  class="services"
-  id="servicos"
->
-
-  <div class="container">
-
-    <div class="reveal">
-
-      <div class="section-tag">
-        nossos serviços
-      </div>
-
-      <h2 class="section-title">
-        Estilo em cada detalhe.
-      </h2>
-
-      <p class="section-description">
-        Serviços pensados para valorizar seu estilo,
-        realizados por profissionais especializados.
-      </p>
-
-    </div>
-
-
-    <div class="services-grid">
-
-      <div class="service-card reveal">
-
-        <div class="service-icon">
-          ✂️
-        </div>
-
-        <h3>
-          Corte Premium
-        </h3>
-
-        <p>
-          Corte personalizado de acordo com
-          seu estilo e formato de rosto.
-        </p>
-
-        <span class="price">
-          R$ 45
-        </span>
-
-      </div>
-
-
-      <div class="service-card reveal">
-
-        <div class="service-icon">
-          🧔
-        </div>
-
-        <h3>
-          Barba Completa
-        </h3>
-
-        <p>
-          Modelagem, acabamento e tratamento
-          para uma barba impecável.
-        </p>
-
-        <span class="price">
-          R$ 35
-        </span>
-
-      </div>
-
-
-      <div class="service-card reveal">
-
-        <div class="service-icon">
-          👑
-        </div>
-
-        <h3>
-          Imperial Experience
-        </h3>
-
-        <p>
-          Corte, barba, hidratação e acabamento
-          completo em uma experiência exclusiva.
-        </p>
-
-        <span class="price">
-          R$ 75
-        </span>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section>
-
-  <div class="container">
-
-    <div class="stats reveal">
-
-      <div class="stat">
-
-        <div
-          class="stat-number"
-          data-target="1200"
-        >
-          0
-        </div>
-
-        <p>
-          Clientes atendidos
-        </p>
-
-      </div>
-
-
-      <div class="stat">
-
-        <div
-          class="stat-number"
-          data-target="8"
-        >
-          0
-        </div>
-
-        <p>
-          Anos de experiência
-        </p>
-
-      </div>
-
-
-      <div class="stat">
-
-        <div
-          class="stat-number"
-          data-target="4"
-        >
-          0
-        </div>
-
-        <p>
-          Barbeiros
-        </p>
-
-      </div>
-
-
-      <div class="stat">
-
-        <div
-          class="stat-number"
-          data-target="98"
-        >
-          0
-        </div>
-
-        <p>
-          % de satisfação
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section id="sobre">
-
-  <div class="container">
-
-    <div class="experience">
-
-      <div class="experience-image reveal">
-
-        <div class="experience-box">
-          Desde 2018<br>
-          criando estilo.
-        </div>
-
-      </div>
-
-
-      <div class="experience-text reveal">
-
-        <div class="section-tag">
-          experiência imperial
-        </div>
-
-        <h2 class="section-title">
-          Não é só cabelo.
-          É identidade.
-        </h2>
-
-        <p>
-          A Barbearia Imperial nasceu com uma missão:
-          transformar o momento do corte em uma experiência.
-
-          Cada cliente recebe atendimento personalizado
-          em um ambiente moderno, confortável e pensado
-          nos mínimos detalhes.
-        </p>
-
-        <a
-          href="#contato"
-          class="btn btn-gold"
-        >
-          Reservar meu horário
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section id="contato">
-
-  <div class="cta reveal">
-
-    <div class="section-tag">
-      pronto para mudar o visual?
-    </div>
-
-    <h2>
-      Seu próximo corte
-      começa aqui.
-    </h2>
-
-    <p>
-      Clique abaixo e agende seu horário
-      diretamente pelo WhatsApp.
-    </p>
-
-    <a
-      href="https://wa.me/5511999999999"
-      target="_blank"
-      class="btn btn-gold"
+    <div
+        class="lightbox"
+        aria-hidden="true"
     >
-      Agendar pelo WhatsApp →
-    </a>
 
-  </div>
-
-</section>
-
-</main>
-
-
-<a
-  href="https://wa.me/5511999999999"
-  target="_blank"
-  class="whatsapp"
->
-  ☎
-</a>
+        <button
+            class="lightbox-close"
+            aria-label="Fechar imagem"
+        >
+            ×
+        </button>
 
 
-<footer>
+        <img
+            src=""
+            alt="Imagem ampliada da galeria"
+        >
 
-  © 2026 Barbearia Imperial.
-  Todos os direitos reservados.
-
-</footer>
-
-
-<script>
-
-  /* animações quando o usuário rola a página */
-
-  const reveals =
-    document.querySelectorAll(".reveal");
-
-  function revealElements() {
-
-    reveals.forEach(element => {
-
-      const windowHeight =
-        window.innerHeight;
-
-      const elementTop =
-        element.getBoundingClientRect().top;
-
-      if(elementTop < windowHeight - 100) {
-
-        element.classList.add("active");
-
-      }
-
-    });
-
-  }
-
-  window.addEventListener(
-    "scroll",
-    revealElements
-  );
-
-  revealElements();
+    </div>
 
 
-  /* contador animado */
 
-  const counters =
-    document.querySelectorAll(".stat-number");
-
-  let countersStarted = false;
-
-  function startCounters() {
-
-    const stats =
-      document.querySelector(".stats");
-
-    const position =
-      stats.getBoundingClientRect().top;
-
-    if(
-      position < window.innerHeight &&
-      !countersStarted
-    ) {
-
-      countersStarted = true;
-
-      counters.forEach(counter => {
-
-        const target =
-          Number(counter.dataset.target);
-
-        let current = 0;
-
-        const increment =
-          Math.max(1, target / 80);
-
-        const updateCounter = () => {
-
-          current += increment;
-
-          if(current < target) {
-
-            counter.innerText =
-              Math.floor(current);
-
-            requestAnimationFrame(
-              updateCounter
-            );
-
-          } else {
-
-            counter.innerText =
-              target;
-
-          }
-
-        };
-
-        updateCounter();
-
-      });
-
-    }
-
-  }
-
-  window.addEventListener(
-    "scroll",
-    startCounters
-  );
-
-  startCounters();
-
-</script>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 
 </body>
+
 </html>
